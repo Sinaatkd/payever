@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { SafeAreaView, NativeModule, NativeModules, Button, Alert, ToastAndroid, TextInput, Text } from 'react-native';
+import { SafeAreaView, NativeModule, NativeModules, Alert, ToastAndroid, TextInput, Text, StyleSheet } from 'react-native';
+import {Button} from './components';
 
 interface PaymentModuleType {
     initializeSDK: (apiKey: string) => Promise<string>;
@@ -40,7 +41,7 @@ const App = () => {
     }
 
     return (
-        <SafeAreaView>
+        <SafeAreaView style={styles.container}>
             <Text>{paymentResult}</Text>
             <Button onPress={handleInitialSDKPress} title='SDK' />
             <Button onPress={handlePaymentProcessPress} title='process' />
@@ -49,5 +50,21 @@ const App = () => {
         </SafeAreaView>
     );
 }
+
+
+const styles = StyleSheet.create({
+    container: {
+        padding: 10,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: 2,
+        height: '100%',
+        width: '100%'
+    },
+    button: {
+        width: 200,
+    }
+})
 
 export default App;
