@@ -26,7 +26,9 @@ Ensure you have the following installed:
 
 ### **2️⃣ Running the App**
 Follow the steps below in order:
+- **clone the project from https://github.com/Sinaatkd/payever**
 - **npm install**
+- **build android/ folder using Android Studio**
 - **npx react-native doctor**
 - **npm run android**
 
