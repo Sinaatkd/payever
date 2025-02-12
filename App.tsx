@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { SafeAreaView, NativeModule, NativeModules, Alert, ToastAndroid, TextInput, Text, StyleSheet } from 'react-native';
-import {Button} from './components';
+import { SafeAreaView, NativeModule, NativeModules, Alert, ToastAndroid, Text, StyleSheet, View } from 'react-native';
+import { Button, TextInput } from './components';
 
 interface PaymentModuleType {
     initializeSDK: (apiKey: string) => Promise<string>;
@@ -43,10 +43,14 @@ const App = () => {
     return (
         <SafeAreaView style={styles.container}>
             <Text>{paymentResult}</Text>
-            <Button onPress={handleInitialSDKPress} title='SDK' />
-            <Button onPress={handlePaymentProcessPress} title='process' />
-            <TextInput placeholder='api key' onChangeText={handleAPIKeyChange} value={APIKey} />
-            <TextInput placeholder='amount' onChangeText={handleAmountChange} keyboardType={'numeric'} value={amount.toString()} />
+            <View style={styles.fullWidth}>
+                <TextInput placeholder='api key' onChangeText={handleAPIKeyChange} value={APIKey} />
+                <Button onPress={handleInitialSDKPress} title='SDK' />
+            </View>
+            <View style={styles.fullWidth}>
+                <TextInput placeholder='amount' onChangeText={handleAmountChange} keyboardType={'numeric'} value={amount > 0 ? amount.toString() : ''} />
+                <Button onPress={handlePaymentProcessPress} title='process' />
+            </View>
         </SafeAreaView>
     );
 }
@@ -58,12 +62,16 @@ const styles = StyleSheet.create({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        gap: 2,
+        gap: 20,
         height: '100%',
         width: '100%'
     },
     button: {
         width: 200,
+    },
+    fullWidth: {
+        width: '100%',
+        gap: 3
     }
 })
 
